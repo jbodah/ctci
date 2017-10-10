@@ -29,6 +29,10 @@ public class Node {
     return this.value;
   }
 
+  public void setValue(int value) {
+    this.value = value;
+  }
+
   public void setNext(Node node) {
     this.next = node;
   }
