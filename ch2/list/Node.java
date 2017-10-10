@@ -5,6 +5,18 @@ public class Node {
   Node tail;
   int value;
 
+  public static Node build(int ...args) {
+    Node acc = null;
+    for (int value : args) {
+      if (acc == null) {
+        acc = new Node(value);
+      } else {
+        acc.appendToTail(new Node(value));
+      }
+    }
+    return acc;
+  }
+
   public Node(int value) {
     this.value = value;
     this.next = null;
@@ -25,6 +37,18 @@ public class Node {
     return this.next;
   }
 
+  public boolean eql(Node other) {
+    if (this.getValue() == other.getValue()) {
+      if (this.next() == null && other.next() == null) {
+        return true;
+      } else {
+        return this.next().eql(other.next());
+      }
+    } else {
+      return false;
+    }
+  }
+
   public int getValue() {
     return this.value;
   }
@@ -35,5 +59,15 @@ public class Node {
 
   public void setNext(Node node) {
     this.next = node;
+  }
+
+  public void print() {
+    Node node = this;
+    while (node != null) {
+      System.out.printf("%d ", node.getValue());
+      node = node.next();
+    }
+
+    System.out.println();
   }
 }
